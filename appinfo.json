@@ -1,0 +1,40 @@
+{
+    "versionLabel": "1.0",
+    "uuid": "2bf9fec5-4106-4f97-bb41-ae31318733ac",
+    "capabilities": [
+        ""
+    ],
+    "resources": {
+        "media": [
+            {
+                "type": "font",
+                "file": "fonts/imagine.ttf",
+                "name": "IMAGINE_42"
+            },
+            {
+                "type": "png",
+                "file": "images/Dithered Image.png",
+                "name": "BACKB"
+            },
+            {
+                "type": "png",
+                "file": "images/grass.png",
+                "name": "BACK"
+            },
+            {
+                "menuIcon": true,
+                "type": "png",
+                "file": "images/logo.png",
+                "name": "MENU_ICON"
+            }
+        ]
+    },
+    "companyName": "0l1v3rof@googlemail.com",
+    "versionCode": 1,
+    "longName": "MFWatchface",
+    "shortName": "MFWatchface",
+    "appKeys": {},
+    "watchapp": {
+        "watchface": false
+    }
+}
