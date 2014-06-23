@@ -35,6 +35,6 @@
     "shortName": "MFWatchface",
     "appKeys": {},
     "watchapp": {
-        "watchface": false
+        "watchface": true
     }
 }

@@ -54,27 +54,106 @@ void tick_handler(struct tm *tick_time, TimeUnits units_changed)
     strftime(buffer, sizeof("00:00"), "%I:%M", tick_time);
  
     int seconds = tick_time->tm_sec;
+    
+ if (seconds >= 1 && seconds < 59)
+    {
+     
+     text_layer_set_text(text_layer, buffer);
+ }
+    
  
-    if(seconds == 29)
+ 
+ if(seconds == 14)
+    {
+     GRect startb = GRect(144, 110, 144,168);
+     GRect finishb = GRect(0, 110, 144, 168);
+     
+     animate_layer(bitmap_layer_get_layer(backb_layer), &startb, &finishb, 100, 250);
+    
+     
+    }
+    if(seconds >= 15 && seconds < 45)
     {
         
-        GRect startb = GRect(144, 110, 144, 168);
+        GRect startb = GRect(0, 110, 144, 168);
         GRect finishb = GRect(0, 110, 144, 168);
      
-     ;
-     animate_layer(bitmap_layer_get_layer(backb_layer), &startb, &finishb, 300, 500);
+     
+     animate_layer(bitmap_layer_get_layer(backb_layer), &startb, &finishb, 0, 0);
     
     }
-    else if(seconds == 59)
-    {
+    
+   
+    
+    
      
-     GRect startb = GRect(0, 110, 144, 168);
+     if(seconds == 29)
+    {
+     GRect startv= GRect(144, 50, 144, 62);
+     GRect finishv = GRect(0, 50, 144, 62);
+     
+     animate_layer(inverter_layer_get_layer(inv_layer), &startv, &finishv, 100, 250);
+    
+     
+    }
+     
+   
+ if(seconds >= 30 && seconds < 59)    
+   {
+     
+     GRect startv = GRect(0, 50, 144, 62);
+     GRect finishv = GRect(0, 50, 144, 62);
+     animate_layer(inverter_layer_get_layer(inv_layer), &startv, &finishv, 0, 0);
+     
+    
+     }
+    
+
+ if(seconds == 44)
+    {
+     GRect startb = GRect(0, 110, 144,168);
+     GRect finishb = GRect(144, 110, 144, 168);
+     
+     animate_layer(bitmap_layer_get_layer(backb_layer), &startb, &finishb, 100, 250);
+    
+     
+    }
+  
+ 
+    if(seconds >= 45 && seconds < 59)
+    {
+    
+     layer_mark_dirty(bitmap_layer_get_layer(backb_layer));
+     GRect startb = GRect(144, 110, 144, 168);
      GRect finishb = GRect(144, 110, 144, 168);
      
      
-     animate_layer(bitmap_layer_get_layer(backb_layer), &startb, &finishb, 300, 500);
+     animate_layer(bitmap_layer_get_layer(backb_layer), &startb, &finishb, 0, 0);
+    
+       }
+    
+    if(seconds == 58)
+    {
+     GRect startv = GRect(0, 50, 144,62);
+     GRect finishv = GRect(144, 50, 144, 162);
+     
+     animate_layer(inverter_layer_get_layer(inv_layer), &startv, &finishv, 100, 250);
+    
+     
     }
-     else if(seconds == 0)
+ 
+     if(seconds == 59)
+    {
+     GRect startv = GRect(144, 50, 144, 62);
+     GRect finishv = GRect(144, 50, 144, 62);
+      
+    
+     
+     animate_layer(inverter_layer_get_layer(inv_layer), &startv, &finishv, 0, 0);
+    }
+    
+ 
+      if(seconds == 0)
     {
         //Change the TextLayer text to show the new time!
         text_layer_set_text(text_layer, buffer);
@@ -85,9 +164,14 @@ void tick_handler(struct tm *tick_time, TimeUnits units_changed)
         text_layer_set_text(text_layer, buffer);
     }
      
+ 
      
      
-   }
+ }
+    
+    
+
+
     
  
  
@@ -116,7 +200,7 @@ void window_load(Window *window)
  //Create BitmapLayers to show GBitmaps and add to Window
  
  
- backb_layer = bitmap_layer_create(GRect(144, 113, 144, 168));
+ backb_layer = bitmap_layer_create(GRect(144, 110, 144, 168));
  bitmap_layer_set_bitmap(backb_layer, backb_bitmap);
  layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(backb_layer));
  
@@ -125,7 +209,7 @@ void window_load(Window *window)
  layer_add_child(window_get_root_layer(window), (Layer*) text_layer);
   
  //Inverter layer
-inv_layer = inverter_layer_create(GRect(0, 50, 144, 62));
+inv_layer = inverter_layer_create(GRect(144, 50, 144, 62));
 layer_add_child(window_get_root_layer(window), (Layer*) inv_layer);
  
  
@@ -150,6 +234,8 @@ void window_unload(Window *window)
     text_layer_destroy(text_layer);
  tick_timer_service_unsubscribe();
  inverter_layer_destroy(inv_layer);
+ bitmap_layer_destroy(backb_layer);
+ gbitmap_destroy(backb_bitmap);
  
 }
   
@@ -198,3 +284,4 @@ int main(void)
   deinit();
   
 }
+    
